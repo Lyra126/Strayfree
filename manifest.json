@@ -4,10 +4,10 @@
   "description": "Base Level Extension",
   "version": "1.0",
   "action": {
-    "default_popup": "hello.html",
+    "default_popup": "popup.html",
     "default_icon": "hello_extensions.png"
   },
-  "permissions": ["declarativeNetRequest"],
+  "permissions": ["declarativeNetRequest", "history", "activeTab", "storage"],
   "host_permissions": ["<all_urls>"],
   "declarative_net_request": {
     "rule_resources": [{
@@ -15,5 +15,7 @@
       "enabled": true,
       "path": "rules.json"
     }]
+  },"background": {
+    "service_worker": "background.js"
   }
 }
