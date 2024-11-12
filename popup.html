@@ -1,14 +1,76 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body { font-family: Arial, sans-serif; }
-    </style>
-  </head>
-  <body>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tab {
+      overflow: hidden;
+      background-color: #f1f1f1;
+    }
+
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    .tab button.active {
+      background-color: #cccccc;
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 20px;
+      height: 100px;
+      width: 300px;
+    }
+
+    #pet {
+      background-color: #a6c9d5;
+      height: 300px;
+      position: relative;
+      text-align: center;
+    }
+
+    #pet img {
+      position: absolute;
+      bottom: 2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- tab navi -->
+  <div class="tab">
+    <button class="tabs" data-tab="Pet">Pet</button>
+    <button class="tabs" data-tab="Stats">Statistics</button>
+  </div>
+
+  <div id="Pet" class="tabcontent">
+    <div id="pet">
+      <img src="assets/chicken.png">
+    </div>
+  </div>
+
+  <div id="Stats" class="tabcontent">
     <h1>Productivity Tracker</h1>
-    <div id="tracked-sites"></div>
     <div id="unproductive-time"></div>
-    <script src="popup.js"></script>
-  </body>
+    <div id="tracked-sites"></div> <!--maybe set a limit to the most recent so its not too long-->
+  </div>
+
+  <script src="popup.js"></script>
+</body>
 </html>

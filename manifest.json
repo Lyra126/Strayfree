@@ -1,12 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Hello Extensions of the world!",
-  "description": "Base Level Extension",
+  "name": "StrayFree",
+  "description": "Let's stay focused!",
   "version": "1.0",
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "hello_extensions.png"
+    "default_icon": "assets/chicken.png"
   },
+  
   "permissions": ["declarativeNetRequest", "history", "activeTab", "storage"],
   "host_permissions": ["<all_urls>"],
   "declarative_net_request": {
@@ -15,7 +16,9 @@
       "enabled": true,
       "path": "rules.json"
     }]
-  },"background": {
+  },
+  
+  "background": {
     "service_worker": "background.js"
   }
 }
