@@ -35,8 +35,8 @@
     .tabcontent {
       display: none;
       padding: 20px;
-      height: 100px;
-      width: 300px;
+      height: 300px;
+      width: 350px;
     }
 
     #pet {
@@ -69,6 +69,13 @@
     <h1>Productivity Tracker</h1>
     <div id="unproductive-time"></div>
     <div id="tracked-sites"></div> <!--maybe set a limit to the most recent so its not too long-->
+    <h3>Save Your Note</h3>
+      <input type="text" id="user-input" placeholder="Type something..." />
+      <button id="save-input">Save</button>
+      <p id="saved-message" style="color: green; display: none;">Note saved!</p>
+      
+      <h3>Saved Notes:</h3>
+      <ul id="saved-notes-list"></ul>
   </div>
 
   <script src="popup.js"></script>
