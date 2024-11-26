@@ -14,6 +14,33 @@ function openTab(evt, tabName) {
   evt.currentTarget.classList.add("active");
 }
 
+//evolution based on favorability
+function getStage(favorability) {
+  if (favorability <= 25) {
+    return 'egg.png';
+  } else if (favorability <= 50) {
+    return 'caterpillar.png';
+  } else if (favorability <= 75) {
+    return 'cocoon.png';
+  } else {
+    return 'butterfly.png';
+  }
+}
+
+//update the pet image
+function updatePet(imageName) {
+  const petImage = document.getElementById('pet-img');
+  petImage.src = `assets/${imageName}`;
+}
+
+// Function to calculate favorability
+function calcFavorability(unproductive, productive) {
+  const total = unproductive + productive;
+  if (total === 0) return 0;
+  const favorability = Math.min(100, Math.max(0, Math.round((productive / total) * 100)));
+  return favorability;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const tabButtons = document.getElementsByClassName("tabs");
   for (let i = 0; i < tabButtons.length; i++) {
@@ -26,6 +53,37 @@ document.addEventListener("DOMContentLoaded", () => {
   // pet tab is the default tab
   document.getElementById("Pet").style.display = "block";
   tabButtons[0].classList.add("active");
+
+  //update the pet image and progress bar
+  chrome.storage.local.get(["unproductiveTime", "productiveTime"], (data) => {
+    const unproductiveTime = data.unproductiveTime || 0;
+    const productiveTime = data.productiveTime || 0; 
+    const favorability = calcFavorability(unproductiveTime, productiveTime);
+        
+    const stage = getStage(favorability);
+    updatePet(stage);
+    
+    //motivation messages
+    const petImage = document.getElementById('pet-img');
+    petImage.addEventListener('click', () => {
+      const motivations = [
+        "Keep up the great work!",
+        "You're doing amazing!",
+        "Stay focused and keep progressing!",
+        "Every step counts!",
+        "Believe in yourself!"
+      ];
+
+      const randomMotivation = motivations[Math.floor(Math.random() * motivations.length)];
+      const messageDiv = document.getElementById('motivation-message');
+      messageDiv.textContent = randomMotivation;
+      messageDiv.style.display = "block";
+      
+      setTimeout(() => {
+        messageDiv.style.display = "none";
+      }, 3500);    
+    });
+  });
 
   //stats tab
     chrome.storage.local.get(["trackedSites", "unproductiveTime"], (data) => {

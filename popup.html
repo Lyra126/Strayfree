@@ -8,6 +8,42 @@
       padding: 0;
     }
 
+    .progress {
+      width: 90%;
+      background-color: #e4e4e4;
+      border-radius: 5px;
+      overflow: hidden;
+      height: 20px;
+      margin-bottom: 10px;
+      height: 30px;
+      margin: 10px auto;
+      border: #23666e solid 3px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #4caf50;
+      /* display: flex; 
+      align-items: center; 
+      color: #8a8a7e; 
+      font-size: 16px; 
+      font-weight: bold; */
+      transition: width 0.5s;
+    }
+
+    #motivation-message {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #e0f7fa;
+      color: #23666e;
+      border-radius: 3px;
+      font-size: 16px;
+      font-weight: bold;
+      font-display: center;
+    }
+
     .tab {
       overflow: hidden;
       background-color: #f1f1f1;
@@ -35,7 +71,7 @@
     .tabcontent {
       display: none;
       padding: 20px;
-      height: 300px;
+      height: 350px;
       width: 350px;
     }
 
@@ -43,12 +79,16 @@
       background-color: #a6c9d5;
       height: 300px;
       position: relative;
-      text-align: center;
+      border: #23666e solid 4px;
+      border-radius: 10px;
     }
 
-    #pet img {
+    #pet-img {
       position: absolute;
-      bottom: 2px;
+      bottom: 10px;
+      right: -30px;
+      height: 220px;
+      width: 310px;
     }
   </style>
 </head>
@@ -58,13 +98,22 @@
     <button class="tabs" data-tab="Pet">Pet</button>
     <button class="tabs" data-tab="Stats">Statistics</button>
   </div>
-
+  
+    <!-- progress bar -->
+    <div class="progress">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    
   <div id="Pet" class="tabcontent">
     <div id="pet">
-      <img src="assets/chicken.png">
+      <img src="assets/egg.png" id="pet-img">
     </div>
+    
+    <!-- motivation Message -->
+    <div id="motivation-message"></div>
   </div>
-
+  </div>
+    
   <div id="Stats" class="tabcontent">
     <h1>Productivity Tracker</h1>
     <div id="unproductive-time"></div>
