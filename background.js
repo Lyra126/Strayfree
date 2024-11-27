@@ -21,7 +21,8 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         });
       } else if (productiveSites.includes(domain)) {
         const newProductiveTime = (data.productiveTime || 0) + 1;
-        chrome.storage.local.set({ productiveTime });
+        chrome.storage.local.set({ productiveTime});
+        console.log(`Productive Time Incremented: ${productiveTime}`);
       }
     });
   }

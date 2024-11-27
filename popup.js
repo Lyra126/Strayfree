@@ -33,10 +33,12 @@ function updatePet(imageName) {
   petImage.src = `assets/${imageName}`;
 }
 
-// Function to calculate favorability
+//function to calculate favorability
 function calcFavorability(unproductive, productive) {
   const total = unproductive + productive;
-  if (total === 0) return 0;
+  if (total === 0) {
+    return 0;
+  }
   const favorability = Math.min(100, Math.max(0, Math.round((productive / total) * 100)));
   return favorability;
 }
@@ -59,9 +61,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const unproductiveTime = data.unproductiveTime || 0;
     const productiveTime = data.productiveTime || 0; 
     const favorability = calcFavorability(unproductiveTime, productiveTime);
-        
+
     const stage = getStage(favorability);
     updatePet(stage);
+
+    const progressBar = document.getElementById('progress-bar');
+    progressBar.style.width = favorability + '%';
+
+    const progressText = document.getElementById('progress-text');
+    progressText.textContent = `${favorability}%`;
     
     //motivation messages
     const petImage = document.getElementById('pet-img');
